@@ -6,9 +6,9 @@ from . import views
 urlpatterns = [
     path('projects/', views.ProjectList.as_view(), name="projects"),
     path('projects/<int:pk>/', views.ProjectDetail.as_view(), name='project-detail'),
-    # path('projects/<int:pk>/users/', views.user_list, name='project-users'),
-    # path('projects/<int:pk>/users/<int:pk2>/', views.user_detail, name='project-users-detail'),
-    # path('projects/<int:pk>/issues/', views.issue_list, name='project_issues'),
+    path('projects/<int:pk>/users/', views.ContributorList.as_view(), name='project-contributors'),
+    path('projects/<int:pk>/users/<int:pk2>/', views.ContributorDetail.as_view(), name='project-contributors-detail'),
+    path('projects/<int:pk>/issues/', views.IssueList.as_view(), name='project-issues'),
     # path('projects/<int:pk>/issues/<int:pk2>/', views.issue_detail, name='project_issue-detail'),
     # path('projects/<int:pk>/issues/<int:pk2>/comments/', views.comment_list, name='issue-comments'),
     # path('projects/<int:pk>/issues/<int:pk2>/comments/<int:pk3>/', views.comment_detail, name='issue-comment-detail'),
