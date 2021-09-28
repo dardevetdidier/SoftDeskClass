@@ -14,8 +14,6 @@ from .models import Project, Issue, Comment, Contributor
 
 class ProjectList(APIView):
     """"List of all projects, or create a new project"""
-    permission_classes = [IsAuthenticated, ]
-
     def get(self, request):
         projects = Project.objects.filter(contributors__exact=self.request.user)
         serializer = ProjectSerializer(projects, many=True)
@@ -37,8 +35,7 @@ class ProjectList(APIView):
 
 class ProjectDetail(APIView):
     """Retrieve, update or delete a project instance"""
-    permission_classes = [IsAuthenticated,
-                          ProjectAuthorAllContributorCreateRead, ]
+    permission_classes = [IsAuthenticated, ProjectAuthorAllContributorCreateRead]
 
     @staticmethod
     def get_object(pk):
@@ -75,16 +72,24 @@ class ContributorList(APIView):
     """
 
     def get(self, request, pk):
+        project = Project.objects.get(pk=pk)
         contributors = Contributor.objects.filter(project_id=pk)
-        serializer = ContributorSerializer(contributors, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if self.request.user in project.contributors.all():
+            serializer = ContributorSerializer(contributors, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            raise PermissionDenied()
 
-    def post(self, request, *args, **kwargs):
-        serializer = ContributorSerializer(data=self.request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, pk, *args, **kwargs):
+        project = Project.objects.get(pk=pk)
+        if self.request.user == project.author_user_id:
+            serializer = ContributorSerializer(data=self.request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            raise PermissionDenied
 
 
 class ContributorDetail(APIView):
