@@ -131,7 +131,9 @@ class IssueList(APIView):
         project = get_object_or_404(Project, pk=pk)
         if request.user in project.contributors.all():
             serializer = IssueSerializer(data=self.request.data)
+
             if serializer.is_valid():
+                serializer.validated_data["assignee_user_id"] = self.request.user
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

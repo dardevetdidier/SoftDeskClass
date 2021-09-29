@@ -50,7 +50,8 @@ class Issue(models.Model):
     assignee_user_id = models.ForeignKey(to=User,
                                          default=author_user_id,
                                          on_delete=models.CASCADE,
-                                         related_name='assignee_user_id')
+                                         related_name='assignee_user_id',
+                                         blank=True)
     created_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
