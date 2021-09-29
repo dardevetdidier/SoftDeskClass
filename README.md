@@ -22,14 +22,22 @@ ___
 3. Create a virtual environment for the project with ```$ py -m venv venv``` on Windows or ```python3 -m venv venv````on macos or linux.
 4. Activate the virtual environment with ```$ venv\Scripts\activate``` on Windows or ```$ source venv/bin/activate``` on macos or linux`.
 5. Install the project dependancies with ```$ pip install -r requirements.txt```
-6. Create and populate the project database with ```$ python manage.py`create_db```
-7. Run the server with ```$ python manage.py runserver```
+6. Generate the django secret key :
+   1. Create a .env file in the root folder of the project with ```$ touch .env```
+   2. Generate the secret key with ```$ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'```
+   3. Copy the generated key
+   4. Open the .env file with a text editor and add:  
+   SECRET_KEY = 'paste the secret key here' (keep quotes)
+   5. Save and close .env file.
+7. Create the project database with ```$ python manage.py migrate```
+8. Run the server with ```$ python manage.py runserver```
 
-When the server is running, after the step 7 of the procedure, you have to register with :\
-https://localhost:8000/signup/ \
-and login with : \
+When the server is running, after the step 7 of the procedure, you have to register with a POST method at:\
+https://localhost:8000/signup/
+
+and login with a POST method at: \
 https://localhost:8000/login/ \
-to obtain access and refresh tokens. \
+to obtain access and refresh tokens.
 
 Once you are logged in, the SoftDesk API can be requested from endpoints starting with the following base URL:
 https://localhost:8000/projects/ \
