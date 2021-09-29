@@ -32,7 +32,7 @@ ___
 7. Create the project database with ```$ python manage.py migrate```
 8. Run the server with ```$ python manage.py runserver```
 
-When the server is running, after the step 7 of the procedure, you have to register with a POST method at:\
+When the server is running, after the step 8 of the procedure, you have to register with a POST method at:\
 https://localhost:8000/signup/
 
 and login with a POST method at: \
@@ -42,7 +42,7 @@ to obtain access and refresh tokens.
 Once you are logged in, the SoftDesk API can be requested from endpoints starting with the following base URL:
 https://localhost:8000/projects/ \
 
-Steps 1-3 and 5-6 are only required for the initial installation. For subsequent launches of the API, you only have to execute steps 4 and 7 from the root folder of the project.
+Steps 1-3 and 5-7 are only required for the initial installation. For subsequent launches of the API, you only have to execute steps 4 and 7 from the root folder of the project.
 
 ## Usage and detailed endpoints documentation
 ___
