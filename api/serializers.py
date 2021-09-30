@@ -37,7 +37,7 @@ class IssueSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    # contributors = ContributorSerializer(many=True, read_only=True)
+    contributors = UserSerializer(many=True, read_only=True)
     issues = IssueSerializer(many=True, read_only=True)
     type = serializers.ChoiceField(TYPE_CHOICES)
 
