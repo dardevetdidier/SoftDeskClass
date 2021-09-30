@@ -19,13 +19,13 @@ ___
 
 1. Clone this repository using ```$ git clone https://github.com/dardevetdidier/SoftDeskClass.git```
 2. Move to the SoftDeskClass root folder with ```$ cd SoftDeskClass```
-3. Create a virtual environment for the project with ```$ py -m venv venv``` on Windows or ```python3 -m venv venv````on macos or linux.
+3. Create a virtual environment for the project with ```$ py -m venv venv``` on Windows or ```python3 -m venv venv``` on macos or linux.
 4. Activate the virtual environment with ```$ venv\Scripts\activate``` on Windows or ```$ source venv/bin/activate``` on macos or linux`.
 5. Install the project dependancies with ```$ pip install -r requirements.txt```
 6. Generate the django secret key :
    1. Create a .env file in the root folder of the project with ```$ touch .env```
    2. Generate the secret key : \
-   dans un terminal ouvrir le shell python avec ```$ python manage.py shell``` and enter these 2 commands: 
+   In Terminal open django shell with ```$ python manage.py shell``` and enter these 2 commands: 
 
    ```>>> from django.core.management.utils import get_random_secret_key``` \
    ```>>> print(get_random_secret_key())``` \
@@ -35,10 +35,11 @@ ___
    4. Open the .env file with a text editor and add:  
    SECRET_KEY = 'paste the secret key here' (keep quotes)
    5. Save and close .env file.
+7. Create the database with : ```$ python manage.py migrate```
 
-7. Run the server with ```$ python manage.py runserver```
+8. Run the server with ```$ python manage.py runserver```
 
-When the server is running, after the step 7 of the procedure, you have to register with a POST method at:\
+When the server is running, after the step 8 of the procedure, you have to register with a POST method at:\
 https://localhost:8000/signup/
 
 and login with a POST method at: \
@@ -48,7 +49,8 @@ to obtain access and refresh tokens.
 Once you are logged in, the SoftDesk API can be requested from endpoints starting with the following base URL:
 https://localhost:8000/projects/ 
 
-Steps 1-3 and 5-6 are only required for the initial installation. For subsequent launches of the API, you only have to execute steps 4 and 7 from the root folder of the project.
+Steps 1-3 and 5-7 are only required for the initial installation. For subsequent launches of the API, you only
+have to execute steps 4 and 8 from the root folder of the project.
 
 ## Usage and detailed endpoints documentation
 ___

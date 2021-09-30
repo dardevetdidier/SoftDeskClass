@@ -8,7 +8,7 @@ from .models import Project, Contributor, Comment, Issue, TYPE_CHOICES
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email', 'password')
+        fields = ('id', 'first_name', 'last_name', 'email')
 
 
 class ContributorSerializer(serializers.ModelSerializer):
