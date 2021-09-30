@@ -22,6 +22,7 @@ class ProjectList(APIView):
     def post(self, request):
         serializer = ProjectSerializer(data=self.request.data)
         if serializer.is_valid():
+            serializer.validated_data["author_user_id"] = request.user
             serializer.save()
             contributor = Contributor(user_id=request.user,
                                       project_id=Project.objects.last(),

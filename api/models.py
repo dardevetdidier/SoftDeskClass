@@ -17,6 +17,8 @@ class Project(models.Model):
     author_user_id = models.ForeignKey(to=User,
                                        default=None,
                                        on_delete=models.CASCADE,
+                                       blank=True,
+                                       null=True,
                                        )
     contributors = models.ManyToManyField(to=User,
                                           through='Contributor',
