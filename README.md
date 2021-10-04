@@ -57,4 +57,4 @@ ___
 
 Once you have launched the server, you can read the API documentation by visiting :
 
-AJOUTER LE LIEN DE LA DOC POSTMAN
+https://documenter.getpostman.com/view/16247859/UUy1gTAo

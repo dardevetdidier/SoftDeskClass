@@ -14,6 +14,8 @@ from .models import Project, Issue, Comment, Contributor
 
 class ProjectList(APIView):
     """"List of all projects, or create a new project"""
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request):
         projects = Project.objects.filter(contributors__exact=self.request.user)
         serializer = ProjectSerializer(projects, many=True)
