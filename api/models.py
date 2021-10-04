@@ -48,7 +48,8 @@ class Issue(models.Model):
     status = models.CharField(max_length=150, choices=STATUS_CHOICES)
     author_user_id = models.ForeignKey(to=User,
                                        on_delete=models.CASCADE,
-                                       related_name='author_user_id')
+                                       related_name='author_user_id',
+                                       blank=True)
     assignee_user_id = models.ForeignKey(to=User,
                                          default=author_user_id,
                                          on_delete=models.CASCADE,
