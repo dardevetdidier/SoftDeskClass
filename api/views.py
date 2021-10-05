@@ -7,7 +7,8 @@ from rest_framework.response import Response
 
 from rest_framework.views import APIView
 
-from .permissions import ProjectAuthorAllContributorCreateRead, IssueAuthorAllContributorCreateRead, CommentAuthorAllContributorCreateRead
+from .permissions import ProjectAuthorAllContributorCreateRead, IssueAuthorAllContributorCreateRead, \
+                         CommentAuthorAllContributorCreateRead
 from .serializers import ProjectSerializer, IssueSerializer, CommentSerializer, ContributorSerializer
 from .models import Project, Issue, Comment, Contributor
 
